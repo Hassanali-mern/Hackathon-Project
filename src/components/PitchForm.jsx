@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaSpinner, FaMagic } from 'react-icons/fa';
 
 const PitchForm = ({ onPitchGenerated }) => {
   const [formData, setFormData] = useState({
@@ -78,30 +79,29 @@ const PitchForm = ({ onPitchGenerated }) => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Create a New Pitch</h2>
+    <div className="bg-gradient-to-br from-purple-50 via-white to-purple-100 rounded-2xl shadow-xl p-8 mb-8">
+      <h2 className="text-3xl font-extrabold text-gray-900 mb-10 text-center tracking-tight">Create a New Pitch</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-6">
-          <label className="block text-gray-700 font-medium mb-2">Your Startup Idea</label>
+        <div className="mb-8">
+          <label className="block text-lg font-bold text-gray-700 mb-3">Your Startup Idea</label>
           <textarea
             name="idea"
             value={formData.idea}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full border border-gray-300 rounded-xl p-5 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
             rows="4"
             placeholder="Describe your startup idea in detail..."
             required
           ></textarea>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Industry</label>
+            <label className="block text-lg font-bold text-gray-700 mb-3">Industry</label>
             <select
               name="industry"
               value={formData.industry}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
               required
             >
               <option value="">Select an industry</option>
@@ -112,12 +112,11 @@ const PitchForm = ({ onPitchGenerated }) => {
               <option value="E-commerce">E-commerce</option>
             </select>
           </div>
-          
           <div>
-            <label className="block text-gray-700 font-medium mb-2">Tone</label>
-            <div className="flex space-x-4">
+            <label className="block text-lg font-bold text-gray-700 mb-3">Tone</label>
+            <div className="flex space-x-6">
               {['professional', 'casual', 'persuasive'].map(tone => (
-                <label key={tone} className="flex items-center">
+                <label key={tone} className="flex items-center text-lg">
                   <input
                     type="radio"
                     name="tone"
@@ -126,27 +125,26 @@ const PitchForm = ({ onPitchGenerated }) => {
                     onChange={handleChange}
                     className="mr-2 text-purple-600 focus:ring-purple-500"
                   />
-                  <span className="capitalize">{tone}</span>
+                  <span className="capitalize font-semibold">{tone}</span>
                 </label>
               ))}
             </div>
           </div>
         </div>
-        
         <div className="flex justify-end">
           <button
             type="submit"
             disabled={isGenerating}
-            className="gradient-bg text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 flex items-center"
+            className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-10 py-4 rounded-xl font-bold hover:from-purple-600 hover:to-purple-800 transition-all duration-150 shadow-lg flex items-center gap-3 disabled:opacity-50"
           >
             {isGenerating ? (
               <>
-                <i className="fas fa-spinner fa-spin mr-2"></i>
+                <FaSpinner className="animate-spin text-xl mr-2" />
                 Generating...
               </>
             ) : (
               <>
-                <i className="fas fa-magic mr-2"></i>
+                <FaMagic className="text-xl mr-2" />
                 Generate Pitch
               </>
             )}
